@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SABLE — Ресторан авторской кухни</title>
+  <meta name="description" content="SABLE — камерный ресторан авторской кухни. Сезонные дегустационные сеты, открытый огонь, винный погреб и 28 посадочных мест." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="is-loading">
+
+  <!-- Прелоадер «накрываем на стол» -->
+  <div class="preloader" aria-hidden="true">
+    <div class="preloader__inner">
+      <svg class="preloader__table" viewBox="0 0 180 120" width="180" height="120" fill="none">
+        <!-- Тарелка -->
+        <circle class="table-stroke table-plate-outer" cx="90" cy="60" r="42" stroke="#C9A461" stroke-width="1.2" />
+        <circle class="table-stroke table-plate-inner" cx="90" cy="60" r="27" stroke="#C9A461" stroke-width="0.9" stroke-opacity="0.6" />
+        <!-- Вилка слева -->
+        <path class="table-stroke table-cutlery" d="M28 24V52M23 24V42C23 47 28 49 28 49C28 49 33 47 33 42V24M28 52V96" stroke="#F2ECE1" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+        <!-- Нож справа -->
+        <path class="table-stroke table-cutlery" d="M152 24C157 34 157 52 152 58V96M152 24V58" stroke="#F2ECE1" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+      <p class="preloader__text">Накрываем на стол</p>
+      <span class="preloader__brand">SABLE</span>
+    </div>
+  </div>
+
+  <!-- Кастомный курсор-кольцо -->
+  <div class="ring-cursor" aria-hidden="true">
+    <span class="ring-cursor__circle"></span>
+    <span class="ring-cursor__dot"></span>
+    <span class="ring-cursor__label"></span>
+  </div>
+
+  <!-- Навигация -->
+  <header class="header">
+    <nav class="nav container" aria-label="Основная навигация">
+      <a href="#hero" class="nav__logo">SABLE</a>
+
+      <ul class="nav__links">
+        <li><a href="#philosophy">Кухня</a></li>
+        <li><a href="#dishes">Блюда</a></li>
+        <li><a href="#tasting">Сет-меню</a></li>
+        <li><a href="#reserve">Бронь</a></li>
+      </ul>
+
+      <a href="#reserve" class="btn btn--gold-outline magnetic" data-cursor="Бронь">
+        <span class="magnetic__inner">Забронировать стол</span>
+      </a>
+
+      <button class="nav__burger" type="button" aria-label="Открыть меню" aria-expanded="false">
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- Мобильное меню -->
+  <div class="mobile-drawer" aria-hidden="true">
+    <ul class="mobile-drawer__list">
+      <li><a href="#philosophy">Кухня</a></li>
+      <li><a href="#dishes">Блюда</a></li>
+      <li><a href="#tasting">Сет-меню</a></li>
+      <li><a href="#reserve">Бронь</a></li>
+    </ul>
+    <a href="#reserve" class="btn btn--gold mobile-drawer__cta">Забронировать стол</a>
+  </div>
+
+  <main>
+    <!-- Hero -->
+    <section id="hero" class="hero">
+      <div class="hero__media" aria-hidden="true">
+        <img
+          src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1800&q=80"
+          alt="Авторская подача блюда крупным планом"
+          class="hero__bg"
+        />
+        <div class="hero__scrim"></div>
+      </div>
+
+      <div class="container hero__container">
+        <div class="hero__top">
+          <span class="hero__eyebrow">Авторская гастрономия · Chef’s Table</span>
+          <span class="hero__coords">Москва · Пречистенка, 19</span>
+        </div>
+
+        <h1 class="hero__title split-kinetic">
+          Вкус, собранный<br />
+          <em>из тишины и огня</em>
+        </h1>
+
+        <div class="hero__bottom">
+          <p class="hero__lead">
+            Камерный ресторан на 28 мест. Работаем с дикими травами, выдержанным мясом, локальной рыбой и живым углём.
+          </p>
+          <div class="hero__actions">
+            <a href="#tasting" class="btn btn--gold magnetic" data-cursor="Сет">
+              <span class="magnetic__inner">Дегустационный сет</span>
+            </a>
+            <a href="#dishes" class="btn btn--ghost magnetic" data-cursor="Блюда">
+              <span class="magnetic__inner">Карта блюд</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Curtain-переход + Философия -->
+    <section id="philosophy" class="section philosophy curtain-section">
+      <div class="curtain-wipe" aria-hidden="true"></div>
+      <div class="container philosophy__grid">
+        <div class="philosophy__media">
+          <div class="curtain-frame" data-cursor="Шеф">
+            <img
+              src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1000&q=80"
+              alt="Блюдо высокой кухни крупным планом"
+              class="parallax-photo"
+              loading="lazy"
+            />
+          </div>
+        </div>
+
+        <div class="philosophy__content">
+          <span class="eyebrow stagger-item">01 / Идея</span>
+          <h2 class="section-title split-reveal">
+            Честный продукт, доведённый до чистой эмоции
+          </h2>
+          <p class="editorial-text stagger-item">
+            Меню SABLE меняется каждые шесть недель вслед за сезоном. Мы используем ферментацию, копчение на яблоневой щепе и бережное томление, чтобы раскрыть природную глубину ингредиента без лишнего декора.
+          </p>
+          <p class="editorial-text stagger-item">
+            Каждое блюдо подаётся с парой от сомелье — из коллекции редких биодинамических хозяйств и малых виноделен.
+          </p>
+
+          <div class="stats stagger-group">
+            <div class="stat stagger-item">
+              <div class="stat__num"><span class="counter" data-target="9">0</span></div>
+              <div class="stat__label">подач в вечернем сете</div>
+            </div>
+            <div class="stat stagger-item">
+              <div class="stat__num"><span class="counter" data-target="180">0</span>+</div>
+              <div class="stat__label">вин в погребе</div>
+            </div>
+            <div class="stat stagger-item">
+              <div class="stat__num"><span class="counter" data-target="28">0</span></div>
+              <div class="stat__label">гостей в зале</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Блюда крупным планом -->
+    <section id="dishes" class="section dishes curtain-section">
+      <div class="curtain-wipe" aria-hidden="true"></div>
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow stagger-item">02 / Избранные позиции</span>
+            <h2 class="section-title split-reveal">Крупный план сезона</h2>
+          </div>
+          <p class="section-head__note stagger-item">
+            Авторские сочетания текстур, температур и дымных акцентов.
+          </p>
+        </div>
+
+        <div class="dishes__grid stagger-group">
+          <article class="dish-card stagger-item" data-cursor="Смотреть">
+            <div class="dish-card__img-wrap">
+              <img
+                src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=900&q=80"
+                alt="Выдержанная говядина на углях с трюфельным жю"
+                class="parallax-photo"
+                loading="lazy"
+              />
+            </div>
+            <div class="dish-card__body">
+              <div class="dish-card__meta">
+                <span>Горячее</span>
+                <span>2 450 ₽</span>
+              </div>
+              <h3 class="dish-card__title">Стриплойн 45 дней выдержки</h3>
+              <p class="dish-card__desc">
+                Крем из печёного пастернака, соус демиглас с чёрным трюфелем и маринованный можжевельник.
+              </p>
+            </div>
+          </article>
+
+          <article class="dish-card stagger-item" data-cursor="Смотреть">
+            <div class="dish-card__img-wrap">
+              <img
+                src="https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=900&q=80"
+                alt="Морской гребешок с соусом берблан крупным планом"
+                class="parallax-photo"
+                loading="lazy"
+              />
+            </div>
+            <div class="dish-card__body">
+              <div class="dish-card__meta">
+                <span>Закуска</span>
+                <span>1 680 ₽</span>
+              </div>
+              <h3 class="dish-card__title">Сахалинский гребешок</h3>
+              <p class="dish-card__desc">
+                Тёплый берблан на шампанском, масло зелёного лука и икра форели.
+              </p>
+            </div>
+          </article>
+
+          <article class="dish-card stagger-item" data-cursor="Смотреть">
+            <div class="dish-card__img-wrap">
+              <img
+                src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=900&q=80"
+                alt="Десерт из горького шоколада с золотом крупным планом"
+                class="parallax-photo"
+                loading="lazy"
+              />
+            </div>
+            <div class="dish-card__body">
+              <div class="dish-card__meta">
+                <span>Десерт</span>
+                <span>980 ₽</span>
+              </div>
+              <h3 class="dish-card__title">Ганаш из 75% какао и белых грибов</h3>
+              <p class="dish-card__desc">
+                Солёная карамель с мисо, мороженое из жжёного молока и хрустящий тюиль.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reveal-анимация меню -->
+    <section id="tasting" class="section tasting curtain-section">
+      <div class="curtain-wipe" aria-hidden="true"></div>
+      <div class="container">
+        <div class="tasting__header">
+          <span class="eyebrow stagger-item">03 / Дегустационное меню</span>
+          <h2 class="section-title split-reveal">Сет «Осеннее равноденствие»</h2>
+          <p class="tasting__price stagger-item">7 900 ₽ · Винное сопровождение + 4 500 ₽</p>
+        </div>
+
+        <ul class="menu-list">
+          <li class="menu-row">
+            <span class="menu-row__num">I</span>
+            <div class="menu-row__main">
+              <h3>Тарталетка с копчёным угрём и юдзу</h3>
+              <p>Хрустящее тесто из гречневой муки, крем-фреш, цедра лайма</p>
+            </div>
+            <span class="menu-row__weight">45 г</span>
+            <span class="menu-row__line" aria-hidden="true"></span>
+          </li>
+
+          <li class="menu-row">
+            <span class="menu-row__num">II</span>
+            <div class="menu-row__main">
+              <h3>Крудо из мурманской трески</h3>
+              <p>Ферментированный крыжовник, эстрагоновое масло, морская соль</p>
+            </div>
+            <span class="menu-row__weight">90 г</span>
+            <span class="menu-row__line" aria-hidden="true"></span>
+          </li>
+
+          <li class="menu-row">
+            <span class="menu-row__num">III</span>
+            <div class="menu-row__main">
+              <h3>Равиоль с уткой конфи и сморчками</h3>
+              <p>Консоме из печёных костей, выдержанный пармезан 36 месяцев</p>
+            </div>
+            <span class="menu-row__weight">120 г</span>
+            <span class="menu-row__line" aria-hidden="true"></span>
+          </li>
+
+          <li class="menu-row">
+            <span class="menu-row__num">IV</span>
+            <div class="menu-row__main">
+              <h3>Палтус на берёзовых углях</h3>
+              <p>Пюре из цветной капусты, икорный соус, хрустящий кейл</p>
+            </div>
+            <span class="menu-row__weight">150 г</span>
+            <span class="menu-row__line" aria-hidden="true"></span>
+          </li>
+
+          <li class="menu-row">
+            <span class="menu-row__num">V</span>
+            <div class="menu-row__main">
+              <h3>Оленина с дикой брусникой</h3>
+              <p>Корень сельдерея, глазурь из портвейна, печёный лук-шалот</p>
+            </div>
+            <span class="menu-row__weight">140 г</span>
+            <span class="menu-row__line" aria-hidden="true"></span>
+          </li>
+
+          <li class="menu-row">
+            <span class="menu-row__num">VI</span>
+            <div class="menu-row__main">
+              <h3>Печёная груша и крем из бобов тонка</h3>
+              <p>Мороженое из мёда диких трав, крошка из грецкого ореха</p>
+            </div>
+            <span class="menu-row__weight">110 г</span>
+            <span class="menu-row__line" aria-hidden="true"></span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Бронирование -->
+    <section id="reserve" class="section reserve curtain-section">
+      <div class="curtain-wipe" aria-hidden="true"></div>
+      <div class="container reserve__grid">
+        <div class="reserve__info">
+          <span class="eyebrow stagger-item">04 / Визит</span>
+          <h2 class="section-title split-reveal">Вечер начинается с вашего стола</h2>
+
+          <dl class="reserve__details stagger-group">
+            <div class="stagger-item">
+              <dt>Адрес</dt>
+              <dd>ул. Пречистенка, 19, Москва</dd>
+            </div>
+            <div class="stagger-item">
+              <dt>Время работы</dt>
+              <dd>Вт–Вс: 17:00 – 00:00 · Пн: выходной</dd>
+            </div>
+            <div class="stagger-item">
+              <dt>Резерв</dt>
+              <dd><a href="tel:+74959876543">+7 (495) 987-65-43</a></dd>
+            </div>
+          </dl>
+        </div>
+
+        <form class="reserve__form stagger-item" id="reserveForm">
+          <h3 class="reserve__form-title">Забронировать стол</h3>
+          <div class="reserve__fields">
+            <label class="field">
+              <span>Имя</span>
+              <input type="text" name="name" placeholder="Александр" required />
+            </label>
+            <label class="field">
+              <span>Телефон</span>
+              <input type="tel" name="phone" placeholder="+7 (999) 000-00-00" required />
+            </label>
+            <label class="field">
+              <span>Дата и количество гостей</span>
+              <input type="text" name="guests" placeholder="Пятница, 20:00 · 2 гостя" required />
+            </label>
+          </div>
+          <button type="submit" class="btn btn--gold magnetic" data-cursor="Отправить">
+            <span class="magnetic__inner">Подтвердить бронь</span>
+          </button>
+          <p class="reserve__status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <a href="#hero" class="footer__logo">SABLE</a>
+      <p class="footer__copy">&copy; 2026 SABLE Авторская кухня. Все права защищены.</p>
+      <div class="footer__links">
+        <a href="#">Telegram</a>
+        <a href="#">Instagram</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lenis + GSAP 3.13 (ScrollTrigger, SplitText, ScrollToPlugin) -->
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollToPlugin.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
