@@ -27,13 +27,237 @@
 
   const reserveForm = document.getElementById('reserveForm');
   const reserveStatus = document.querySelector('.reserve__status');
+  const timeInput = reserveForm?.querySelector('input[name="time"]');
+
+  document.querySelectorAll('.slot-pill').forEach((pill) => {
+    pill.addEventListener('click', () => {
+      document.querySelectorAll('.slot-pill').forEach((p) => p.classList.remove('is-active'));
+      pill.classList.add('is-active');
+      if (timeInput) timeInput.value = pill.dataset.slot || '18:30';
+    });
+  });
+
   reserveForm?.addEventListener('submit', (e) => {
     e.preventDefault();
     const guest = reserveForm.querySelector('input[name="name"]')?.value.trim() || 'Гость';
+    const slot = timeInput?.value || '18:30';
     if (reserveStatus) {
-      reserveStatus.textContent = `${guest}, мы зафиксировали запрос и перезвоним в течение 15 минут.`;
+      reserveStatus.textContent = `${guest}, стол на ${slot} предварительно забронирован. Перезвоним в течение 15 минут.`;
     }
     reserveForm.reset();
+  });
+
+  /* --------------------------------------------------------------------------
+     Модальное окно блюд (открытие каждого блюда)
+     -------------------------------------------------------------------------- */
+  const dishesData = {
+    striploin: {
+      category: 'Горячее',
+      weight: '260 г',
+      title: 'Стриплойн 45 дней выдержки',
+      price: '2 450 ₽',
+      img: 'images/dish-steak.jpg',
+      story: 'Мраморная говядина сухого вызревания в камере с гималайской солью. Обжаривается на открытых берёзовых углях до корочки и отдыхает в топлёном масле с тимьяном.',
+      ingredients: ['Стриплойн 45 дней', 'Печёный пастернак', 'Демиглас', 'Чёрный трюфель', 'Можжевельник'],
+      pairing: 'Château Musar, Bekaa Valley или настой чёрной смородины с дымным чаем.',
+    },
+    scallop: {
+      category: 'Закуска',
+      weight: '140 г',
+      title: 'Сахалинский гребешок',
+      price: '1 680 ₽',
+      img: 'images/dish-scallop.jpg',
+      story: 'Крупный дикий гребешок, обжаренный на раскалённой чугунной сковороде за 40 секунд с одной стороны. Подаётся с эмульсией на сухом шампанском.',
+      ingredients: ['Гребешок', 'Берблан на шампанском', 'Масло зелёного лука', 'Икра форели', 'Морская соль'],
+      pairing: 'Chablis Premier Cru Montmains или комбуча из крыжовника.',
+    },
+    ganache: {
+      category: 'Десерт',
+      weight: '130 г',
+      title: 'Ганаш из 75% какао и белых грибов',
+      price: '980 ₽',
+      img: 'images/dish-dessert.jpg',
+      story: 'Шелковистый ганаш на основе перуанского какао, настоянного на сушёных белых грибах, с контрастом солёной мисо-карамели и мороженого из жжёного молока.',
+      ingredients: ['Какао 75%', 'Белые грибы', 'Мисо-карамель', 'Жжёное молоко', 'Сусальное золото'],
+      pairing: 'Sauternes 2016 или тёплый отвар бобов тонка и кардамона.',
+    },
+    halibut: {
+      category: 'Горячее',
+      weight: '220 г',
+      title: 'Мурманский палтус на углях',
+      price: '2 150 ₽',
+      img: 'images/dish-halibut.jpg',
+      story: 'Филе северного палтуса с хрустящей кожей готовится на живом жару, сохраняя сочность. Подаётся на бархатном креме из карамелизованной цветной капусты.',
+      ingredients: ['Палтус', 'Цветная капуста', 'Икорный берблан', 'Хрустящий кейл', 'Лимонный тимьян'],
+      pairing: 'Meursault Les Narvaux или белый чай с морским фенхелем.',
+    },
+    tartare: {
+      category: 'Закуска',
+      weight: '155 г',
+      title: 'Тартар из оленины и брусники',
+      price: '1 490 ₽',
+      img: 'images/dish-tartare.jpg',
+      story: 'Вырезка северного оленя ручной рубки с лёгким ароматом можжевелового дыма, дополненная кислотностью ферментированной брусники и хвойным маслом.',
+      ingredients: ['Вырезка оленя', 'Копчёный желток', 'Брусника', 'Масло хвои', 'Бриошь'],
+      pairing: 'Gevrey-Chambertin или экстракт дикой брусники с можжевельником.',
+    },
+    duck: {
+      category: 'Горячее',
+      weight: '240 г',
+      title: 'Утиная грудка 14 дней вызревания',
+      price: '2 290 ₽',
+      img: 'images/dish-duck.jpg',
+      story: 'Двухнедельное вызревание делает кожу идеально хрустящей, а мясо — нежным. Глазируется редукцией из портвейна и дикой вишни.',
+      ingredients: ['Утиная грудка', 'Дикая вишня', 'Портвейн', 'Печёная тыква', 'Пряный жю'],
+      pairing: 'Barolo Serralunga или холодный настой гибискуса с гвоздикой.',
+    },
+  };
+
+  const dishKeys = Object.keys(dishesData);
+  const dishModal = document.getElementById('dishModal');
+  let activeDishIndex = 0;
+
+  const fillDishModal = (key) => {
+    const data = dishesData[key];
+    if (!data || !dishModal) return;
+    activeDishIndex = dishKeys.indexOf(key);
+
+    const img = document.getElementById('modalDishImg');
+    if (img) {
+      img.src = data.img;
+      img.alt = data.title;
+    }
+    document.getElementById('modalDishCat').textContent = data.category;
+    document.getElementById('modalDishWeight').textContent = data.weight;
+    document.getElementById('modalDishTitle').textContent = data.title;
+    document.getElementById('modalDishPrice').textContent = data.price;
+    document.getElementById('modalDishStory').textContent = data.story;
+    document.getElementById('modalDishPairing').textContent = data.pairing;
+
+    const list = document.getElementById('modalDishIngredients');
+    if (list) {
+      list.innerHTML = data.ingredients.map((item) => `<li>${item}</li>`).join('');
+    }
+  };
+
+  const openDishModal = (key) => {
+    if (!dishModal) return;
+    fillDishModal(key);
+    dishModal.classList.add('is-open');
+    dishModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+
+    if (!prefersReducedMotion && typeof gsap !== 'undefined') {
+      gsap.fromTo(dishModal, { opacity: 0 }, { opacity: 1, duration: 0.3, ease: 'power2.out' });
+      gsap.fromTo(
+        '.dish-modal__dialog',
+        { y: 28, scale: 0.97, opacity: 0 },
+        { y: 0, scale: 1, opacity: 1, duration: 0.45, ease: 'power3.out' }
+      );
+    } else {
+      dishModal.style.opacity = '1';
+    }
+  };
+
+  const closeDishModal = () => {
+    if (!dishModal || !dishModal.classList.contains('is-open')) return;
+    const finish = () => {
+      dishModal.classList.remove('is-open');
+      dishModal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    };
+    if (!prefersReducedMotion && typeof gsap !== 'undefined') {
+      gsap.to(dishModal, { opacity: 0, duration: 0.25, ease: 'power2.in', onComplete: finish });
+    } else {
+      dishModal.style.opacity = '0';
+      finish();
+    }
+  };
+
+  document.querySelectorAll('.dish-card[data-dish]').forEach((card) => {
+    const key = card.dataset.dish;
+    card.addEventListener('click', () => openDishModal(key));
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openDishModal(key);
+      }
+    });
+  });
+
+  dishModal?.querySelectorAll('[data-close-modal]').forEach((el) => {
+    el.addEventListener('click', closeDishModal);
+  });
+
+  document.getElementById('modalReserveBtn')?.addEventListener('click', closeDishModal);
+
+  document.getElementById('modalPrev')?.addEventListener('click', () => {
+    const nextIdx = (activeDishIndex - 1 + dishKeys.length) % dishKeys.length;
+    fillDishModal(dishKeys[nextIdx]);
+  });
+
+  document.getElementById('modalNext')?.addEventListener('click', () => {
+    const nextIdx = (activeDishIndex + 1) % dishKeys.length;
+    fillDishModal(dishKeys[nextIdx]);
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (!dishModal?.classList.contains('is-open')) return;
+    if (e.key === 'Escape') closeDishModal();
+    if (e.key === 'ArrowLeft') document.getElementById('modalPrev')?.click();
+    if (e.key === 'ArrowRight') document.getElementById('modalNext')?.click();
+  });
+
+  const pairingMap = {
+    wine: [
+      'Шампань Blanc de Blancs Brut Nature',
+      'Луара Chenin Blanc Sec',
+      'Бургундия Pinot Noir Premier Cru',
+      'Шабли Premier Cru Montmains',
+      'Приорат Garnacha & Cariñena',
+      'Сотерн 2016',
+    ],
+    na: [
+      'Ферментированный чай из листа юдзу и мяты',
+      'Комбуча из крыжовника и эстрагона',
+      'Холодный настой жареного ячменя с трюфелем',
+      'Белый чай Бай Му Дань с морским фенхелем',
+      'Экстракт дикой брусники, можжевельника и гибискуса',
+      'Тёплый отвар бобов тонка и кардамона',
+    ],
+  };
+
+  const menuRows = document.querySelectorAll('.menu-row');
+  const renderPairing = (mode) => {
+    const notes = pairingMap[mode] || pairingMap.wine;
+    menuRows.forEach((row, idx) => {
+      let badge = row.querySelector('.menu-row__pairing');
+      if (!badge) {
+        badge = document.createElement('span');
+        badge.className = 'menu-row__pairing';
+        row.querySelector('.menu-row__main')?.appendChild(badge);
+      }
+      badge.textContent = `Пейринг: ${notes[idx] || ''}`;
+    });
+  };
+  renderPairing('wine');
+
+  document.querySelectorAll('.pairing-tab').forEach((tab) => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.pairing-tab').forEach((t) => {
+        const active = t === tab;
+        t.classList.toggle('is-active', active);
+        t.setAttribute('aria-pressed', String(active));
+      });
+      renderPairing(tab.dataset.pairing || 'wine');
+      if (!prefersReducedMotion && typeof gsap !== 'undefined') {
+        gsap.fromTo(
+          '.menu-row__pairing',
+          { opacity: 0, y: 6 },
+          { opacity: 1, y: 0, duration: 0.4, stagger: 0.04, ease: 'power2.out' }
+        );
+      }
+    });
   });
 
   const updateHeader = () => {
@@ -56,6 +280,17 @@
   if (typeof SplitText !== 'undefined') {
     gsap.registerPlugin(SplitText);
   }
+
+  gsap.to('.scroll-progress', {
+    scaleX: 1,
+    ease: 'none',
+    scrollTrigger: {
+      trigger: document.documentElement,
+      start: 'top top',
+      end: 'bottom bottom',
+      scrub: true,
+    },
+  });
 
   /* --------------------------------------------------------------------------
      1. Smooth Scroll (Lenis)

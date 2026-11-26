@@ -14,6 +14,9 @@
 </head>
 <body class="is-loading">
 
+  <!-- Индикатор прогресса скролла -->
+  <div class="scroll-progress" aria-hidden="true"></div>
+
   <!-- Прелоадер «накрываем на стол» -->
   <div class="preloader" aria-hidden="true">
     <div class="preloader__inner">
@@ -77,7 +80,7 @@
     <section id="hero" class="hero">
       <div class="hero__media" aria-hidden="true">
         <img
-          src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1800&q=80"
+          src="images/hero-dish.jpg"
           alt="Авторская подача блюда крупным планом"
           class="hero__bg"
         />
@@ -118,7 +121,7 @@
         <div class="philosophy__media">
           <div class="curtain-frame" data-cursor="Шеф">
             <img
-              src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1000&q=80"
+              src="images/chef-plate.jpg"
               alt="Блюдо высокой кухни крупным планом"
               class="parallax-photo"
               loading="lazy"
@@ -171,10 +174,10 @@
         </div>
 
         <div class="dishes__grid stagger-group">
-          <article class="dish-card stagger-item" data-cursor="Смотреть">
+          <article class="dish-card stagger-item" data-dish="striploin" data-cursor="Открыть" tabindex="0" role="button">
             <div class="dish-card__img-wrap">
               <img
-                src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=900&q=80"
+                src="images/dish-steak.jpg"
                 alt="Выдержанная говядина на углях с трюфельным жю"
                 class="parallax-photo"
                 loading="lazy"
@@ -189,13 +192,14 @@
               <p class="dish-card__desc">
                 Крем из печёного пастернака, соус демиглас с чёрным трюфелем и маринованный можжевельник.
               </p>
+              <span class="dish-card__more">Подробнее о блюде →</span>
             </div>
           </article>
 
-          <article class="dish-card stagger-item" data-cursor="Смотреть">
+          <article class="dish-card stagger-item" data-dish="scallop" data-cursor="Открыть" tabindex="0" role="button">
             <div class="dish-card__img-wrap">
               <img
-                src="https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=900&q=80"
+                src="images/dish-scallop.jpg"
                 alt="Морской гребешок с соусом берблан крупным планом"
                 class="parallax-photo"
                 loading="lazy"
@@ -210,13 +214,14 @@
               <p class="dish-card__desc">
                 Тёплый берблан на шампанском, масло зелёного лука и икра форели.
               </p>
+              <span class="dish-card__more">Подробнее о блюде →</span>
             </div>
           </article>
 
-          <article class="dish-card stagger-item" data-cursor="Смотреть">
+          <article class="dish-card stagger-item" data-dish="ganache" data-cursor="Открыть" tabindex="0" role="button">
             <div class="dish-card__img-wrap">
               <img
-                src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=900&q=80"
+                src="images/dish-dessert.jpg"
                 alt="Десерт из горького шоколада с золотом крупным планом"
                 class="parallax-photo"
                 loading="lazy"
@@ -231,6 +236,73 @@
               <p class="dish-card__desc">
                 Солёная карамель с мисо, мороженое из жжёного молока и хрустящий тюиль.
               </p>
+              <span class="dish-card__more">Подробнее о блюде →</span>
+            </div>
+          </article>
+
+          <article class="dish-card stagger-item" data-dish="halibut" data-cursor="Открыть" tabindex="0" role="button">
+            <div class="dish-card__img-wrap">
+              <img
+                src="images/dish-halibut.jpg"
+                alt="Мурманский палтус на берёзовых углях"
+                class="parallax-photo"
+                loading="lazy"
+              />
+            </div>
+            <div class="dish-card__body">
+              <div class="dish-card__meta">
+                <span>Горячее</span>
+                <span>2 150 ₽</span>
+              </div>
+              <h3 class="dish-card__title">Мурманский палтус на углях</h3>
+              <p class="dish-card__desc">
+                Шелковистое пюре из цветной капусты, икорный соус берблан и хрустящий кейл.
+              </p>
+              <span class="dish-card__more">Подробнее о блюде →</span>
+            </div>
+          </article>
+
+          <article class="dish-card stagger-item" data-dish="tartare" data-cursor="Открыть" tabindex="0" role="button">
+            <div class="dish-card__img-wrap">
+              <img
+                src="images/dish-tartare.jpg"
+                alt="Тартар из оленины с можжевельником"
+                class="parallax-photo"
+                loading="lazy"
+              />
+            </div>
+            <div class="dish-card__body">
+              <div class="dish-card__meta">
+                <span>Закуска</span>
+                <span>1 490 ₽</span>
+              </div>
+              <h3 class="dish-card__title">Тартар из оленины и брусники</h3>
+              <p class="dish-card__desc">
+                Копчёный желток, ферментированная брусника, масло из хвои и тёплая бриошь.
+              </p>
+              <span class="dish-card__more">Подробнее о блюде →</span>
+            </div>
+          </article>
+
+          <article class="dish-card stagger-item" data-dish="duck" data-cursor="Открыть" tabindex="0" role="button">
+            <div class="dish-card__img-wrap">
+              <img
+                src="images/dish-duck.jpg"
+                alt="Утиная грудка сухого вызревания с вишнёвой глазурью"
+                class="parallax-photo"
+                loading="lazy"
+              />
+            </div>
+            <div class="dish-card__body">
+              <div class="dish-card__meta">
+                <span>Горячее</span>
+                <span>2 290 ₽</span>
+              </div>
+              <h3 class="dish-card__title">Утиная грудка 14 дней вызревания</h3>
+              <p class="dish-card__desc">
+                Глазурь из дикой вишни и портвейна, крем из печёной тыквы и пряный жю.
+              </p>
+              <span class="dish-card__more">Подробнее о блюде →</span>
             </div>
           </article>
         </div>
@@ -245,6 +317,11 @@
           <span class="eyebrow stagger-item">03 / Дегустационное меню</span>
           <h2 class="section-title split-reveal">Сет «Осеннее равноденствие»</h2>
           <p class="tasting__price stagger-item">7 900 ₽ · Винное сопровождение + 4 500 ₽</p>
+
+          <div class="pairing-tabs stagger-item" role="tablist" aria-label="Выбор сопровождения">
+            <button type="button" class="pairing-tab is-active" data-pairing="wine" aria-pressed="true">Винное сопровождение</button>
+            <button type="button" class="pairing-tab" data-pairing="na" aria-pressed="false">Безалкогольный пейринг</button>
+          </div>
         </div>
 
         <ul class="menu-list">
@@ -346,9 +423,18 @@
               <span>Телефон</span>
               <input type="tel" name="phone" placeholder="+7 (999) 000-00-00" required />
             </label>
+            <div class="field">
+              <span>Время визита</span>
+              <div class="slot-pills" role="group" aria-label="Выбор времени">
+                <button type="button" class="slot-pill is-active" data-slot="18:30">18:30</button>
+                <button type="button" class="slot-pill" data-slot="20:00">20:00</button>
+                <button type="button" class="slot-pill" data-slot="21:30">21:30</button>
+              </div>
+              <input type="hidden" name="time" value="18:30" />
+            </div>
             <label class="field">
               <span>Дата и количество гостей</span>
-              <input type="text" name="guests" placeholder="Пятница, 20:00 · 2 гостя" required />
+              <input type="text" name="guests" placeholder="Пятница · 2 гостя" required />
             </label>
           </div>
           <button type="submit" class="btn btn--gold magnetic" data-cursor="Отправить">
@@ -359,6 +445,48 @@
       </div>
     </section>
   </main>
+
+  <!-- Модальное окно блюда -->
+  <div class="dish-modal" id="dishModal" role="dialog" aria-modal="true" aria-labelledby="modalDishTitle" aria-hidden="true">
+    <div class="dish-modal__backdrop" data-close-modal></div>
+    <div class="dish-modal__dialog">
+      <button type="button" class="dish-modal__close" data-close-modal aria-label="Закрыть">&times;</button>
+
+      <div class="dish-modal__media">
+        <img id="modalDishImg" src="" alt="" />
+      </div>
+
+      <div class="dish-modal__content">
+        <div class="dish-modal__top">
+          <span class="dish-modal__cat" id="modalDishCat"></span>
+          <span class="dish-modal__weight" id="modalDishWeight"></span>
+        </div>
+        <h3 class="dish-modal__title" id="modalDishTitle"></h3>
+        <div class="dish-modal__price" id="modalDishPrice"></div>
+        <p class="dish-modal__story" id="modalDishStory"></p>
+
+        <div class="dish-modal__block">
+          <span class="dish-modal__label">Состав и техники</span>
+          <ul class="dish-modal__tags" id="modalDishIngredients"></ul>
+        </div>
+
+        <div class="dish-modal__block">
+          <span class="dish-modal__label">Пейринг от сомелье</span>
+          <p class="dish-modal__pairing" id="modalDishPairing"></p>
+        </div>
+
+        <div class="dish-modal__actions">
+          <a href="#reserve" class="btn btn--gold magnetic" id="modalReserveBtn" data-cursor="Бронь">
+            <span class="magnetic__inner">Забронировать стол</span>
+          </a>
+          <div class="dish-modal__nav">
+            <button type="button" class="dish-modal__arrow" id="modalPrev" aria-label="Предыдущее блюдо">←</button>
+            <button type="button" class="dish-modal__arrow" id="modalNext" aria-label="Следующее блюдо">→</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <footer class="footer">
     <div class="container footer__inner">
